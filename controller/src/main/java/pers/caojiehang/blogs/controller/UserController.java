@@ -41,9 +41,9 @@ public class UserController {
 
     @GetMapping
     @ResponseBody
-    public Response<? extends ListUsersResponse> listUsers(
-            @RequestBody ListUsersRequest listUsersRequest) {
-        return userService.listUsers(listUsersRequest);
+    public Response<? extends QueryUsersResponse> listUsers(
+            @RequestBody QueryUsersRequest queryUsersRequest) {
+        return userService.queryUsers(queryUsersRequest);
     }
 
     @DeleteMapping("/{id}")

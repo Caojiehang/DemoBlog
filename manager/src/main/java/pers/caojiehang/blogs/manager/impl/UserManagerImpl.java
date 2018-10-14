@@ -31,15 +31,7 @@ public class UserManagerImpl implements UserManager {
     public List<User> queryUser(QueryUser queryUser) {
         // check args
         if (isNull(queryUser)) throw new IllegalArgumentException("QueryUser is required");
-        List<UserPo> userPos = Lists.newArrayList();
-        Long id = queryUser.getId();
-        if (!isNull(id)) {
-            UserPo userPo = userRepository.selectUser(id);
-            if (isNull(userPo)) throw new ResourceNotFoundException("User[id=" + id + "] not found");
-            userPos.add(userPo);
-        } else {
-            userPos = userRepository.selectUsers();
-        }
+        List<UserPo> userPos = userRepository.selectUsers();
         return Lists.newArrayList(userConverter.convertAll(userPos));
     }
 
@@ -66,6 +58,14 @@ public class UserManagerImpl implements UserManager {
         if (userRepository.updateUser(userPo) == 0) {
             throw new ResourceNotFoundException("User[id=" + userPo.getId() + "] not found");
         }
+    }
+
+    @Override
+    public User getUser(Long id) {
+        if (isNull(id)) throw new IllegalArgumentException("User id is required");
+        UserPo userPo = userRepository.selectUser(id);
+        if (isNull(userPo)) throw new ResourceNotFoundException("User[id=" + id + "] not found");
+        return userConverter.convert(userPo);
     }
 
 }

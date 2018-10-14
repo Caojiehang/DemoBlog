@@ -16,6 +16,6 @@ public interface UserService {
 
     Response<? extends DeleteUserResponse> deleteUser(DeleteUserRequest deleteUserRequest);
 
-    Response<? extends ListUsersResponse> listUsers(ListUsersRequest listUsersRequest);
+    Response<? extends QueryUsersResponse> queryUsers(QueryUsersRequest queryUsersRequest);
 
 }

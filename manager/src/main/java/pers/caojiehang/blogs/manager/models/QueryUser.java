@@ -10,6 +10,4 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class QueryUser {
 
-    private Long id;
-
 }

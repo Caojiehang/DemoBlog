@@ -18,4 +18,6 @@ public interface UserManager {
 
     void updateUser(User user);
 
+    User getUser(Long id);
+
 }

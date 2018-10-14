@@ -52,7 +52,7 @@ public class UserServiceImpl implements UserService {
     public Response<? extends GetUserResponse> getUser(GetUserRequest getUserRequest) {
         return Response.success(new GetUserResponse()
                 .setUserDescription(userConverter.reverse().convert(
-                        userManager.queryUser(new QueryUser().setId(getUserRequest.getId())).get(0)
+                        userManager.getUser(getUserRequest.getId())
                         )
                 )
         );
@@ -65,8 +65,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Response<? extends ListUsersResponse> listUsers(ListUsersRequest listUsersRequest) {
-        return Response.success(new ListUsersResponse()
+    public Response<? extends QueryUsersResponse> queryUsers(QueryUsersRequest queryUsersRequest) {
+        return Response.success(new QueryUsersResponse()
                 .setUserDescriptions(Lists.newArrayList(
                         userConverter.reverse().convertAll(userManager.queryUser(new QueryUser()))
                         )
