@@ -1,6 +1,6 @@
 package pers.caojiehang.blogs.manager;
 
-import pers.caojiehang.blogs.manager.models.QueryUser;
+import pers.caojiehang.blogs.manager.models.QueryUsers;
 import pers.caojiehang.blogs.manager.models.User;
 
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface UserManager {
 
-    List<User> queryUser(QueryUser queryUser);
+    List<User> queryUsers(QueryUsers queryUsers);
 
     void deleteUser(Long id);
 

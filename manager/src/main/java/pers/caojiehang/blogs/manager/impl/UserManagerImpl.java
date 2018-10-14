@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pers.caojiehang.blogs.common.errors.ResourceNotFoundException;
 import pers.caojiehang.blogs.manager.UserManager;
-import pers.caojiehang.blogs.manager.models.QueryUser;
+import pers.caojiehang.blogs.manager.models.QueryUsers;
 import pers.caojiehang.blogs.manager.models.User;
 import pers.caojiehang.blogs.repository.UserRepository;
 import pers.caojiehang.blogs.repository.models.UserPo;
@@ -28,9 +28,9 @@ public class UserManagerImpl implements UserManager {
     private Converter<UserPo, User> userConverter;
 
     @Override
-    public List<User> queryUser(QueryUser queryUser) {
+    public List<User> queryUsers(QueryUsers queryUsers) {
         // check args
-        if (isNull(queryUser)) throw new IllegalArgumentException("QueryUser is required");
+        if (isNull(queryUsers)) throw new IllegalArgumentException("QueryUsers is required");
         List<UserPo> userPos = userRepository.selectUsers();
         return Lists.newArrayList(userConverter.convertAll(userPos));
     }

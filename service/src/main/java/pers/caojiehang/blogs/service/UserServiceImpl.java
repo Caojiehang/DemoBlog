@@ -8,7 +8,7 @@ import pers.caojiehang.blogs.client.UserService;
 import pers.caojiehang.blogs.client.models.Response;
 import pers.caojiehang.blogs.client.models.users.*;
 import pers.caojiehang.blogs.manager.UserManager;
-import pers.caojiehang.blogs.manager.models.QueryUser;
+import pers.caojiehang.blogs.manager.models.QueryUsers;
 import pers.caojiehang.blogs.manager.models.User;
 
 import static pers.caojiehang.blogs.common.utils.Blank.*;
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
     public Response<? extends QueryUsersResponse> queryUsers(QueryUsersRequest queryUsersRequest) {
         return Response.success(new QueryUsersResponse()
                 .setUserDescriptions(Lists.newArrayList(
-                        userConverter.reverse().convertAll(userManager.queryUser(new QueryUser()))
+                        userConverter.reverse().convertAll(userManager.queryUsers(new QueryUsers()))
                         )
                 )
         );

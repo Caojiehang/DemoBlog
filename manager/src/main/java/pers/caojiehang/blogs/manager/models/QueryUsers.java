@@ -8,6 +8,6 @@ import lombok.experimental.Accessors;
  */
 @Data
 @Accessors(chain = true)
-public class QueryUser {
+public class QueryUsers {
 
 }
