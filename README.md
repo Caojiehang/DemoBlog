@@ -1,2 +1,2 @@
-# DemoBlog
-This is blog system.
+# blogs
+blogs

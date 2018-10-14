@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss} %highlight(%-5level) [%thread] %cyan(%logger{15}) [%file:%line] %highlight(%msg) %n</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <root>
+        <level value="INFO"/>
+        <appender-ref ref="consoleAppender"/>
+    </root>
+
+    <!--<logger name="org.epiclouds.data.crawler.scheduler.repositories.CrawlerStrategyRepository" level="DEBUG"/>-->
+
+</configuration>
