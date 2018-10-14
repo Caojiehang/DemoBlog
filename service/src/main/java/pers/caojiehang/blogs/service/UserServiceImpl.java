@@ -11,7 +11,6 @@ import pers.caojiehang.blogs.manager.UserManager;
 import pers.caojiehang.blogs.manager.models.QueryUsers;
 import pers.caojiehang.blogs.manager.models.User;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static pers.caojiehang.blogs.common.utils.Blank.*;
