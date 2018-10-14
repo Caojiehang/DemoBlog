@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
                 .setCode(ILLEGAL_ARGUMENT.getValue())
                 .setMessage("UserDescription is required");
         userManager.addUser(userConverter.convert(userDescription));
-        return Response.success();
+        return Response.success(new AddUserResponse());
     }
 
     @Override
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
                 .setCode(ILLEGAL_ARGUMENT.getValue())
                 .setMessage("UserDescription is required");
         userManager.updateUser(userConverter.convert(userDescription));
-        return Response.success();
+        return Response.success(new UpdateUserResponse());
     }
 
     @Override
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public Response<? extends DeleteUserResponse> deleteUser(DeleteUserRequest deleteUserRequest) {
         userManager.deleteUser(deleteUserRequest.getId());
-        return Response.success();
+        return Response.success(new DeleteUserResponse());
     }
 
     @Override
