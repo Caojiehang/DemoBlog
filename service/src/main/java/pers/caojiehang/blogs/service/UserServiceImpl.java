@@ -11,6 +11,9 @@ import pers.caojiehang.blogs.manager.UserManager;
 import pers.caojiehang.blogs.manager.models.QueryUsers;
 import pers.caojiehang.blogs.manager.models.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static pers.caojiehang.blogs.common.utils.Blank.*;
 import static pers.caojiehang.blogs.client.models.Code.*;
 
@@ -53,11 +56,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response<? extends GetUserResponse> getUser(GetUserRequest getUserRequest) {
+        UserDescription userDescription = userConverter.reverse().convert(
+                userManager.getUser(getUserRequest.getId())
+        ).setPassword(null);
         return Response.success(new GetUserResponse()
-                .setUserDescription(userConverter.reverse().convert(
-                        userManager.getUser(getUserRequest.getId())
-                        )
-                )
+                .setUserDescription(userDescription)
         );
     }
 
@@ -69,11 +72,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Response<? extends QueryUsersResponse> queryUsers(QueryUsersRequest queryUsersRequest) {
-        return Response.success(new QueryUsersResponse()
-                .setUserDescriptions(Lists.newArrayList(
-                        userConverter.reverse().convertAll(userManager.queryUsers(queryUsersConverter.convert(queryUsersRequest)))
-                        )
+        List<UserDescription> userDescriptions = Lists.newArrayList(
+                userConverter.reverse().convertAll(
+                        userManager.queryUsers(queryUsersConverter.convert(queryUsersRequest))
                 )
+        );
+        userDescriptions.forEach(userDescription -> userDescription.setPassword(null));
+        return Response.success(new QueryUsersResponse()
+                .setUserDescriptions(userDescriptions)
         );
     }
 
