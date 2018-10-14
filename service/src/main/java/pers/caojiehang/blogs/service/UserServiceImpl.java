@@ -24,6 +24,9 @@ public class UserServiceImpl implements UserService {
     private Converter<UserDescription, User> userConverter;
 
     @Autowired
+    private Converter<QueryUsersRequest, QueryUsers> queryUsersConverter;
+
+    @Autowired
     private UserManager userManager;
 
     @Override
@@ -68,7 +71,7 @@ public class UserServiceImpl implements UserService {
     public Response<? extends QueryUsersResponse> queryUsers(QueryUsersRequest queryUsersRequest) {
         return Response.success(new QueryUsersResponse()
                 .setUserDescriptions(Lists.newArrayList(
-                        userConverter.reverse().convertAll(userManager.queryUsers(new QueryUsers()))
+                        userConverter.reverse().convertAll(userManager.queryUsers(queryUsersConverter.convert(queryUsersRequest)))
                         )
                 )
         );
